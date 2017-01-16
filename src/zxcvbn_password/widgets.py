@@ -15,10 +15,10 @@ class PasswordStrengthInput(PasswordInput):
     def render(self, name, value, attrs=None):
         """Widget render method."""
         strength_markup = """
-        <div class="progress-bloc" style="margin-top: 10px;">
+        <div class="progress-bloc" style="margin-top: 10px; display: none">
             <div class="progress" style="margin-bottom: 10px;">
-                <div class="progress-bar
-                            progress-bar-warning
+                <div class="bar
+                            bar-warning
                             password_strength_bar"
                      role="progressbar"
                      aria-valuenow="0"
@@ -27,8 +27,8 @@ class PasswordStrengthInput(PasswordInput):
                      style="width: 0%%">
                 </div>
             </div>
-            <p class="text-muted password_strength_info hidden">
-                <span class="label label-danger">
+            <p class="text-muted password_strength_info" style="display: none">
+                <span class="label label-important">
                     %s
                 </span>
                 <span style="margin-left:5px;">
@@ -72,7 +72,7 @@ class PasswordConfirmationInput(PasswordInput):
             self.attrs['data-confirm-with'] = 'id_%s' % self.confirm_with
 
         confirmation_markup = """
-        <div style="margin-top: 10px;" class="hidden password_strength_info">
+        <div style="margin-top: 10px; display: none;" class="password_strength_info">
             <p class="text-muted">
                 <span class="label label-danger">
                     %s

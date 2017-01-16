@@ -34,12 +34,12 @@ $(function($) {
             if( confirm_with && confirm_with == password_field.attr('id')) {
                 if( confirm_value && password ) {
                     if (confirm_value === password) {
-                        $(confirm_field).parent().find('.password_strength_info').addClass('hidden');
+                        $(confirm_field).parent().find('.password_strength_info').hide();
                     } else {
-                        $(confirm_field).parent().find('.password_strength_info').removeClass('hidden');
+                        $(confirm_field).parent().find('.password_strength_info').show();
                     }
                 } else {
-                    $(confirm_field).parent().find('.password_strength_info').addClass('hidden');
+                    $(confirm_field).parent().find('.password_strength_info').hide();
                 }
             }
         });
@@ -62,23 +62,23 @@ $(function($) {
             var crack_time = result.crack_time_display;
 
             if( result.score < 1 ) {
-                password_strength_bar.removeClass('progress-bar-success').addClass('progress-bar-danger');
-                password_strength_info.find('.label').removeClass('hidden');
+                password_strength_bar.removeClass('bar-success').addClass('bar-danger');
+                password_strength_info.find('.label').show();
             } else if( result.score < 3 ) {
-                password_strength_bar.removeClass('progress-bar-danger').addClass('progress-bar-warning');
-                password_strength_info.find('.label').removeClass('hidden');
+                password_strength_bar.removeClass('bar-danger').addClass('bar-warning');
+                password_strength_info.find('.label').show();
             } else {
-                password_strength_bar.removeClass('progress-bar-warning').addClass('progress-bar-success');
-                password_strength_info.find('.label').addClass('hidden');
+                password_strength_bar.removeClass('bar-warning').addClass('bar-success');
+                password_strength_info.find('.label').hide();
             }
 
             password_strength_bar.width( ((result.score+1)/5)*100 + '%' ).attr('aria-valuenow', result.score + 1);
             password_strength_info.find('.password_strength_time').html(display_time(result.crack_time));
-            password_strength_info.removeClass('hidden');
+            password_strength_info.show();
         } else {
-            password_strength_bar.removeClass('progress-bar-success').addClass('progress-bar-warning');
+            password_strength_bar.removeClass('bar-success').addClass('bar-warning');
             password_strength_bar.width( '0%' ).attr('aria-valuenow', 0);
-            password_strength_info.addClass('hidden');
+            password_strength_info.hide();
         }
         match_passwords($(this));
     });
